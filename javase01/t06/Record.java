@@ -1,12 +1,16 @@
 package javase01.t06;
 
 /**
- * Created by alexmich on 07.10.16.
+ * Unchangeable record.
  */
 public class Record {
-    private String rec;
+    private final String rec;
 
-    Record(String rec){
+    /**
+     * Constructs a record from the specified string
+     * @param rec the record string
+     */
+    public Record(String rec){
         this.rec = rec;
     }
 
