@@ -3,8 +3,12 @@ package javase01.t04.utils;
 public class Sequence{
     private double seq[];
 
-    public Sequence(String[] elems) {
+    public Sequence(String[] elems) throws IllegalArgumentException {
         int n = elems.length;
+
+        if (n%2 != 0)
+            throw new IllegalArgumentException("Number of elements have to be even");
+
         seq = new double[n];
         for (int i = 0; i < n; ++i){
             seq[i] = Double.parseDouble(elems[i]);
@@ -14,9 +18,9 @@ public class Sequence{
     private static double max(double[] arr){
         int n = arr.length;
         double max = Double.MIN_VALUE;
-        for (int i = 0; i < n; ++i){
-            if (max < arr[i])
-                max = arr[i];
+        for (double cur : arr){
+            if (max < cur)
+                max = cur;
         }
         return max;
     }
@@ -31,8 +35,6 @@ public class Sequence{
     }
     
     public double maxPairs(){
-        int n = seq.length;
-        int i = 0;
         double[] newArr = this.makePairsArr();
         return max(newArr);
     }

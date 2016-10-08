@@ -8,14 +8,12 @@ public class Main{
             System.out.println("Too few parameters. Usage: java javase01.t02.main.Main <elem1> <elem2> ... <elem2n>");
             return;
         }
-        if (args.length % 2 != 0)
-        {
-            System.out.println("Number of parameters should be even");
-            return;
+
+        try {
+            Sequence seq = new Sequence(args);
+            System.out.println("Required value: " + seq.maxPairs());
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
-        
-        Sequence seq = new Sequence(args);
-        
-        System.out.println("Required value: " + seq.maxPairs());
     }
 }
