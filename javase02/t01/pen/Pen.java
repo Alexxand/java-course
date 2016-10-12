@@ -1,47 +1,45 @@
 package javase02.t01.pen;
 
-import static javase02.t01.pen.Pen.Color.*;
+//import static javase02.t01.pen.Pen.Color.*;
 
-/**
- * Created by alexmich on 09.10.16.
- */
 public class Pen {
-    /**
-     * Ink's color.
-     */
-    private Color color;
+
+    public static final byte INK_AMOUNT = 90;
+    public static final byte WRITTEN_INK_AMOUNT = 1;
     /**
      * Amount of ink in millimeters of refill.
      */
-    private byte inkAmount;
+    private byte inkAmount = INK_AMOUNT;
 
-    public Pen() {
-        this(DARK, (byte) 90);
+    private boolean isButtonPressed = false;
+
+    public void pressButton(){
+        isButtonPressed = !isButtonPressed;
     }
 
-    public Pen(Color color, byte inkAmount){
-        this.color = color;
-        this.inkAmount = inkAmount;
+    public boolean isButtonPressed(){
+        return isButtonPressed;
     }
 
-    public void changeRefill(Color color, byte inkAmount){
-        this.color = color;
-        this.inkAmount = inkAmount;
+    public boolean write(){
+        if (!isButtonPressed)
+            return false;
+        if (inkAmount <= 0)
+            return false;
+        inkAmount -= WRITTEN_INK_AMOUNT;
+        return true;
     }
 
-    public void write(byte waste){
-        if (inkAmount >= waste)
-            inkAmount -= waste;
-        else
-            inkAmount = (byte)0;
+    public byte getInkAmount(){
+        return inkAmount;
     }
 
-    public Color getColor(){
-        return color;
+    public boolean isUsedUp(){
+        return inkAmount <= 0;
     }
 
-    public boolean isWasted(){
-        return inkAmount == (byte)0;
+    public void changeRefill(){
+        inkAmount = INK_AMOUNT;
     }
 
     @Override
@@ -52,34 +50,22 @@ public class Pen {
         Pen pen = (Pen) o;
 
         if (inkAmount != pen.inkAmount) return false;
-        return color == pen.color;
+        return isButtonPressed == pen.isButtonPressed;
 
     }
 
     @Override
     public int hashCode() {
-        int result = color != null ? color.hashCode() : 0;
-        result = 31 * result + (int) inkAmount;
+        int result = (int) inkAmount;
+        result = 31 * result + (isButtonPressed ? 1 : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Pen{" +
-                "color=" + color +
-                ", inkAmount=" + inkAmount +
+                "inkAmount=" + inkAmount +
+                ", isButtonPressed=" + isButtonPressed +
                 '}';
-    }
-
-    public enum Color{
-        DARK,
-        BLUE,
-        GREEN,
-        RED;
-
-        @Override
-        public String toString() {
-            return super.toString().toLowerCase();
-        }
     }
 }
