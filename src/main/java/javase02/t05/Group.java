@@ -24,9 +24,9 @@ public class Group {
         return listOfStudents.isEmpty();
     }
 
-    public boolean addStudent(Student student,Number mark) throws UnsupportedOperationException{
+    public boolean addStudent(Student student,Number mark) throws IllegalArgumentException{
         if (mark instanceof Double && discipline.getMarkType()==MarkType.INTEGER){
-            throw new UnsupportedOperationException();
+            throw new IllegalArgumentException();
         }
         return listOfStudents.add(student) && (listOfMarks.add(mark) || !listOfStudents.remove(student));
     }

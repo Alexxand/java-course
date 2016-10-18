@@ -32,7 +32,7 @@ public class GroupTest {
         assertEquals(new Double(10),group.getMark(typicalStudent));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void addStudentWithInappropriateMarkType(){
         Group group = new Group(new ArrayList<>(),new ArrayList<>(), MATH);
         group.addStudent(typicalStudent,10.0);
