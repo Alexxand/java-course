@@ -1,5 +1,8 @@
 package javase02.t05;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javase02.t05.Group.Discipline;
@@ -9,35 +12,96 @@ import javase02.t05.Group.Discipline;
  */
 public class DisciplineRegistrator {
 
-public boolean addStudent(Student student, List<Discipline> listOfDisciplines, List<Number> listOfMarks){
-    return true;
+private List<Group> listOfGroups = new ArrayList<>();
+
+
+public void addStudent(Student student, List<Discipline> listOfDisciplines, List<Number> listOfMarks){
+    for (Discipline discipline: listOfDisciplines){
+        Number mark = listOfMarks.get(listOfDisciplines.indexOf(discipline));
+        boolean doesDisciplineExist = false;
+        for (Group group: listOfGroups){
+            if (group.getDiscipline() == discipline){
+                group.addStudent(student,mark);
+                doesDisciplineExist = true;
+                break;
+            }
+
+        }
+        if (!doesDisciplineExist){
+            listOfGroups.add(new Group(new ArrayList<>(Collections.singletonList(student)),new ArrayList<>(Collections.singletonList(mark)),discipline));
+        }
+    }
 }
 
-public boolean addGroup(List<Student> listOfStudents, List<Number> listOfMarks, Discipline discipline/*, MarkType markType*/){
-    return true;
+public boolean addGroup(Group group){
+    return listOfGroups.add(group);
+}
+
+public boolean doesGroupExist(Group group){
+    return listOfGroups.contains(group);
 }
 
 public boolean changeMark(Student student, Discipline discipline, Number mark){
-    return true;
+    for (Group group: listOfGroups){
+        if (group.getDiscipline() == discipline){
+            group.changeMark(student,mark);
+            return true;
+        }
+
+    }
+    return false;
 }
 
 public Double getMark(Student student, Discipline discipline){
+    for (Group group: listOfGroups){
+        if(group.getDiscipline() == discipline)
+            return group.getMark(student);
+    }
     return 0.;
 }
 
+public boolean doesStudentExist(Student student){
+    for(Group group: listOfGroups){
+        if (group.doesStudentExist(student))
+            return true;
+    }
+    return false;
+}
+
 public boolean removeStudent(Student student){
-    return true;
+    for (Group group: listOfGroups){
+        if (group.doesStudentExist(student)){
+            group.removeStudent(student);
+            return true;
+        }
+    }
+    return false;
 }
 
-public boolean removeDiscipline(Discipline name){
-    return true;
+public boolean removeGroup(Discipline name){
+    for (Group group: listOfGroups){
+        if(group.getDiscipline() == name)
+           return listOfGroups.remove(group);
+    }
+    return false;
 }
 
-public List<Group> getGroupsForStudent(Student student){
-    return null;
+private List<Group> getGroupsForStudent(Student student) {
+    List<Group> listOfStudentGroups = new ArrayList<>();
+    for (Group group : listOfGroups) {
+        if (group.doesStudentExist(student)) {
+            listOfStudentGroups.add(group);
+        }
+    }
+    return listOfStudentGroups;
 }
 
-public Group getGroup(Discipline discipline){
-    return null;
+Double getAverageMark(Student student) {
+    List<Group> listOfStudentGroups = getGroupsForStudent(student);
+    double markSum = 0;
+    for (Group group: listOfStudentGroups){
+        markSum += group.getMark(student);
+    }
+    return markSum/listOfStudentGroups.size();
 }
 }

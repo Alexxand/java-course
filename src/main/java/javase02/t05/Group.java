@@ -9,48 +9,68 @@ import static javase02.t05.Group.Discipline.*;
  */
 public class Group {
 
-    public Group(List<Student> listOfStudents, List<Number> listOfMarks, Discipline discipline/*, MarkType markType*/){
+    private final List<Student> listOfStudents;
+    private final List<Number> listOfMarks;
+    private final Discipline discipline;
 
+
+    public Group(List<Student> listOfStudents, List<Number> listOfMarks, Discipline discipline){
+        this.listOfStudents = listOfStudents;
+        this.listOfMarks = listOfMarks;
+        this.discipline = discipline;
     }
 
-    public boolean addStudent(Student student,Number mark){
-        return true;
+    public boolean isEmpty(){
+        return listOfStudents.isEmpty();
     }
 
-    public boolean changeMark(Student student, Number mark){
-        return true;
+    public boolean addStudent(Student student,Number mark) throws UnsupportedOperationException{
+        if (mark instanceof Double && discipline.getMarkType()==MarkType.INTEGER){
+            throw new UnsupportedOperationException();
+        }
+        return listOfStudents.add(student) && (listOfMarks.add(mark) || !listOfStudents.remove(student));
+    }
+
+    public void changeMark(Student student, Number mark){
+        listOfMarks.set(listOfStudents.indexOf(student),mark);
     }
 
     public Double getMark(Student student){
-        return 0.;
+        Number mark = listOfMarks.get(listOfStudents.indexOf(student));
+        if (mark instanceof Integer)
+            return (double)(int)listOfMarks.get(listOfStudents.indexOf(student));
+        else
+            return (Double) listOfMarks.get(listOfStudents.indexOf(student));
     }
 
-    public boolean removeStudent(Student student){
-        return true;
+    public boolean doesStudentExist(Student student){
+        return listOfStudents.contains(student);
     }
 
-    public Double getMarkForStudent(Student student){
-        return 0.;
+    public void removeStudent(Student student){
+        listOfMarks.remove(listOfMarks.get(listOfStudents.indexOf(student)));
+        listOfStudents.remove(student);
     }
 
     public Discipline getDiscipline(){
-        return PHYSICS;
-    }
-
-    public boolean isCurDiscipline(Discipline discipline){
-        return true;
+        return discipline;
     }
 
     public enum Discipline{
-        PHYSICS(MarkType.INTEGER);
+        PHYSICS(MarkType.REAL),
+        MATH(MarkType.INTEGER);
 
         private MarkType markType;
 
         Discipline(MarkType markType){
             this.markType = markType;
         }
+
+        public MarkType getMarkType() {
+            return markType;
+        }
     }
-    public enum MarkType{
+    private enum MarkType{
         INTEGER,
         REAL;
     }
