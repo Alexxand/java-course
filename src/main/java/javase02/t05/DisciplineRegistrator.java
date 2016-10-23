@@ -25,10 +25,11 @@ public void addStudent(Student student, List<Discipline> listOfDisciplines, List
                 doesDisciplineExist = true;
                 break;
             }
-
+            //Arrays.asList();
         }
         if (!doesDisciplineExist){
             listOfGroups.add(new Group(new ArrayList<>(Collections.singletonList(student)),new ArrayList<>(Collections.singletonList(mark)),discipline));
+            //listOfGroups.add(new Group(Arrays.asList(student),Arrays.asList(mark),discipline));
         }
     }
 }

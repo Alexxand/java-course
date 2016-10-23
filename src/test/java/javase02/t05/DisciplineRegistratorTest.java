@@ -2,6 +2,9 @@ package javase02.t05;
 
 import org.junit.Test;
 
+import java.io.PipedInputStream;
+import java.io.PushbackReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -51,6 +54,7 @@ public class DisciplineRegistratorTest {
         registrator.addGroup(typicalGroup2);
         registrator.addStudent(typicalStudent2,new ArrayList<>(Collections.singletonList(MATH)),new ArrayList<>(Collections.singletonList(17)));
         assertTrue(registrator.doesStudentExist(typicalStudent2));
+
     }
 
     @Test
