@@ -46,32 +46,4 @@ public class AnswerKeeper {
     public static Locale getCurrentLocale(){
         return curLocale;
     }
-
-    private static class AnswerBundle_en extends ListResourceBundle{
-        private Object[][] contents = {
-                {"1", "United Kingdom"},
-                {"2", "France"},
-                {"3", "Singapore"},
-                {"4", "Russia"}
-        };
-
-        @Override
-        protected Object[][] getContents() {
-            return contents;
-        }
-    }
-
-    private static class AnswerBundle_ru extends ListResourceBundle{
-        private Object[][] contents = {
-                {"1", "Соединённое королевство"},
-                {"2", "Франция"},
-                {"3", "Сингапур"},
-                {"4", "Россия"}
-        };
-
-        @Override
-        protected Object[][] getContents() {
-            return contents;
-        }
-    }
 }

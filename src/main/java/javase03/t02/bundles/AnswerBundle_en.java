@@ -3,7 +3,7 @@ package javase03.t02.bundles;
 import java.util.ListResourceBundle;
 
 
-class AnswerBundle_en extends ListResourceBundle {
+public class AnswerBundle_en extends ListResourceBundle {
     private Object[][] contents = {
             {"1", "United Kingdom"},
             {"2", "France"},
