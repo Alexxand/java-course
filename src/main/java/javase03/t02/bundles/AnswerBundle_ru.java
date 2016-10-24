@@ -5,7 +5,7 @@ import java.util.ListResourceBundle;
 
 public class AnswerBundle_ru extends ListResourceBundle {
     private Object[][] contents = {
-            {"1", "Соединённое королевство"},
+            {"1", "Соединённое Kоролевство"},
             {"2", "Франция"},
             {"3", "Сингапур"},
             {"4", "Россия"}

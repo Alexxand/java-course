@@ -1,21 +1,27 @@
+
 package javase03.t02;
 
+import java.io.IOException;
 import java.util.*;
 
 
 public class AnswerKeeper {
-    private static HashMap<Locale,ResourceBundle> bundleMap = new HashMap<>();
-    private static List<Locale> supportedLocaleList;
-    private static Locale curLocale;
+    private HashMap<Locale,ResourceBundle> bundleMap = new HashMap<>();
+    private List<Locale> supportedLocaleList = Arrays.asList(new Locale("ru"),new Locale("en"));;
+    private Locale curLocale = supportedLocaleList.get(0);;
 
+    /*public AnswerKeeper(Class<? extends ListResourceBundle> clazz){
+        initMap(clazz.getName().split("_")[0]);
+    }
 
+    public AnswerKeeper(String filename){
+        initMap(filename.split("[._]")[0]);
+    }*/
 
-    static {
-        supportedLocaleList = Arrays.asList(new Locale("ru"),new Locale("en"));
+    public AnswerKeeper(String bundleName){
         supportedLocaleList.forEach(
-                elem -> bundleMap.put(elem,ResourceBundle.getBundle("javase03.t02.bundles.AnswerBundle", elem))
+                elem -> bundleMap.put(elem,ResourceBundle.getBundle(bundleName, elem))
         );
-        curLocale = supportedLocaleList.get(0);
     }
 
 
@@ -24,16 +30,16 @@ public class AnswerKeeper {
      * @param questionNumber the number of the question
      * @return An answer to the question
      */
-    public static String getAnswer(Integer questionNumber){
+    public String getAnswer(Integer questionNumber){
         return bundleMap.get(curLocale).getString(questionNumber.toString());
     }
 
     /**
-     * Switch locale to the specified one.
-     * @param locale new locale
+][   * Switch locale to the specified one.
+'?   * @param locale new locale
      * @throws IllegalArgumentException if this bundle does not support the specified locale
      */
-    public static void switchLocale(Locale locale) throws IllegalArgumentException{
+    public void switchLocale(Locale locale) throws IllegalArgumentException{
         if (!supportedLocaleList.contains(locale))
             throw new IllegalArgumentException("Switch to illegal locale " + locale);
         curLocale = locale;
@@ -43,7 +49,7 @@ public class AnswerKeeper {
      * Returns current locale.
      * @return locale which is used now
      */
-    public static Locale getCurrentLocale(){
+    public Locale getCurrentLocale(){
         return curLocale;
     }
 }
