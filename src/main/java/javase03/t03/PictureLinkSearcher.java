@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -16,7 +13,9 @@ import java.util.stream.Stream;
 /**
  * Created by alexmich on 25.10.16.
  */
-public class PictureLinkParser  {
+public class PictureLinkSearcher {
+
+    private static final String PICTURE_LINK_PATTERN ="(Рис. |На рисунке )(\\d+)";
 
     private ArrayList<String> sentenceList = new ArrayList<>();
 
@@ -29,7 +28,7 @@ public class PictureLinkParser  {
         return matchesList;
     }
 
-    public PictureLinkParser(Reader reader) throws IOException{
+    public PictureLinkSearcher(Reader reader) throws IOException{
         BufferedReader bufferedReader = new BufferedReader(reader);
         StringBuilder tempString = new StringBuilder();
         Pattern pattern = Pattern.compile("[А-Я][^!?]*?[^А-Я][!?\\\\.][\\s]*(?=[А-Я]|$)");
@@ -39,8 +38,7 @@ public class PictureLinkParser  {
             line = line.replaceAll("&nbsp;"," ").replaceAll("</?(b|i|sup|sub|pre)>","");
             tempString.append(line);
             ArrayList<String> paragraphList = new ArrayList<>(Arrays.asList(tempString.toString().split("<[^<>]*>")));
-            //todo: попробовать переписать с queue
-            if (paragraphList.size() != 0)
+            if (!paragraphList.isEmpty())
                 tempString = new StringBuilder(paragraphList.remove(paragraphList.size() - 1));
             else
                 tempString = new StringBuilder();
@@ -56,10 +54,10 @@ public class PictureLinkParser  {
 
     public boolean ifLinksGoConsequentially(){
         int lastPictureNum = 0;
-        Pattern pattern = Pattern.compile("(Рис. |На рисунке )(\\d+)");
+        Pattern pattern = Pattern.compile(PICTURE_LINK_PATTERN);
         for(String sentence : sentenceList){
             Matcher matcher = pattern.matcher(sentence);
-            if(matcher.find()) {
+            while(matcher.find()) {
                 int curPictureNum = Integer.parseInt(matcher.group(2));
                 if (lastPictureNum > curPictureNum)
                     return false;
@@ -71,6 +69,14 @@ public class PictureLinkParser  {
     }
 
     public List<String> getSentencesWithPictureLinks(){
-        
+        List<String> sentencesWithPictureLinks = new ArrayList<>();
+        Pattern pattern = Pattern.compile(PICTURE_LINK_PATTERN);
+        for (String sentence : sentenceList){
+            Matcher matcher = pattern.matcher(sentence);
+            if(matcher.find()) {
+                sentencesWithPictureLinks.add(sentence);
+            }
+        }
+        return sentencesWithPictureLinks;
     }
 }
