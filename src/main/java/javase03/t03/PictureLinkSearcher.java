@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  */
 public class PictureLinkSearcher {
 
-    private static final String PICTURE_LINK_PATTERN ="(Рис. |На рисунке )(\\d+)";
+    private static final String PICTURE_LINK_PATTERN ="([Рр]ис. |[Нн]а рисунке )(\\d+)";
 
     private ArrayList<String> sentenceList = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class PictureLinkSearcher {
         Pattern pattern = Pattern.compile("[А-Я][^!?]*?[^А-Я][!?\\\\.][\\s]*(?=[А-Я]|$)");
         String line = bufferedReader.readLine();
         while (line != null){
-            //todo: исправить с использованием нормальных инструментов, для распарсивания html
+            //todo: исправить с использованием нормальных инструментов для распарсивания html
             line = line.replaceAll("&nbsp;"," ").replaceAll("</?(b|i|sup|sub|pre)>","");
             tempString.append(line);
             ArrayList<String> paragraphList = new ArrayList<>(Arrays.asList(tempString.toString().split("<[^<>]*>")));
