@@ -1,0 +1,11 @@
+new 5
+private 3
+package 1
+import 1
+public 8
+extends 1
+for 1
+do 1
+class 1
+if 5
+return 5

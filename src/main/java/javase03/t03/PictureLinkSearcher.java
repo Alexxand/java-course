@@ -1,9 +1,6 @@
 package javase03.t03;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -26,6 +23,7 @@ public class PictureLinkSearcher {
             matchesList.add(matcher.group());
         }
         return matchesList;
+
     }
 
     public PictureLinkSearcher(Reader reader) throws IOException{
