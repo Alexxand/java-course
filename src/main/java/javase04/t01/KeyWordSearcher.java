@@ -1,5 +1,6 @@
 package javase04.t01;
 
+import org.apache.commons.io.input.ReaderInputStream;
 import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -45,36 +46,53 @@ public class KeyWordSearcher {
 
     private Map<String,Integer> keyWordsNumberMap = new HashMap<>();
 
-    private static void makeRegexForKeyWords(){
+    private KeyWordSearcher(){
 
     }
-    public void search(InputStream byteStream) throws IOException{
+
+    public static KeyWordSearcher search(InputStream byteStream) throws IOException{
+        KeyWordSearcher newSearcher = new KeyWordSearcher();
+        Map<String,Integer> newKeyWordsNumberMap = newSearcher.keyWordsNumberMap;
         Pattern pattern = Pattern.compile(keyWordsRegex);
         StringBuilder tempString = new StringBuilder();
         byte[] arr = new byte[100];
-        int endOfLastMatches = 0;
+        int endOfLastMatches;
         while (byteStream.read(arr) != -1) {
             tempString.append(new String(arr));
             Matcher matcher = pattern.matcher(tempString);
             endOfLastMatches = 0;
             while(matcher.find()){
                 String keyWord = matcher.group();
-                if (!keyWordsNumberMap.containsKey(keyWord)){
-                    keyWordsNumberMap.put(keyWord,1);
+                if (!newKeyWordsNumberMap.containsKey(keyWord)){
+                    newKeyWordsNumberMap.put(keyWord,1);
                 } else {
-                    keyWordsNumberMap.put(keyWord,(keyWordsNumberMap.get(keyWord) + 1));
+                    newKeyWordsNumberMap.put(keyWord,(newKeyWordsNumberMap.get(keyWord) + 1));
                 }
                 endOfLastMatches = matcher.end();
             }
             tempString.delete(0,endOfLastMatches);
         }
+        return newSearcher;
     }
+
+    public static KeyWordSearcher search(Reader reader) throws IOException{
+        return search(new ReaderInputStream(reader));
+    }
+
 
     public void print(OutputStream stream) throws IOException {
         Set<String> keySet = keyWordsNumberMap.keySet();
         for (String keyWord : keySet){
             String line = keyWord + " " + keyWordsNumberMap.get(keyWord).toString() + '\n';
             stream.write(line.getBytes());
+        }
+    }
+
+    public void print(Writer writer) throws IOException{
+        Set<String> keySet = keyWordsNumberMap.keySet();
+        for (String keyWord : keySet){
+            String line = keyWord + " " + keyWordsNumberMap.get(keyWord).toString() + '\n';
+            writer.write(line);
         }
     }
 }

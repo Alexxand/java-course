@@ -15,8 +15,7 @@ public class Main {
             OutputStream outputStream = new FileOutputStream(
                     getAbsoluteResourcePath("keyWordsInExample.txt")
             )) {
-            KeyWordSearcher searcher = new KeyWordSearcher();
-            searcher.search(inputStream);
+            KeyWordSearcher searcher = KeyWordSearcher.search(inputStream);
 
             searcher.print(outputStream);
         } catch(IOException e){
