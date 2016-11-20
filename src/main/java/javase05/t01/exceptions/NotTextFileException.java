@@ -6,4 +6,11 @@ import java.io.IOException;
  * Created by alexmich on 20.11.16.
  */
 public class NotTextFileException extends IOException {
+    public NotTextFileException() {
+        super();
+    }
+
+    public NotTextFileException(String message) {
+        super(message);
+    }
 }

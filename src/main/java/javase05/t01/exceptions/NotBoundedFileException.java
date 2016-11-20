@@ -6,4 +6,11 @@ import java.io.IOException;
  * Created by alexmich on 20.11.16.
  */
 public class NotBoundedFileException extends IOException {
+    public NotBoundedFileException() {
+        super();
+    }
+
+    public NotBoundedFileException(String message) {
+        super(message);
+    }
 }
