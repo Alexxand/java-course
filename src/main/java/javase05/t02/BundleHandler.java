@@ -1,9 +1,7 @@
 package javase05.t02;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.util.*;
 
 import static utils.Utils.getAbsoluteResourcePath;
@@ -15,7 +13,9 @@ public class BundleHandler {
 
 
     public BundleHandler(String propertyFileName) throws IOException, FileNotFoundException {
-        bundle = new PropertyResourceBundle(new FileInputStream(getAbsoluteResourcePath(propertyFileName)));
+        try(InputStream stream = new FileInputStream(getAbsoluteResourcePath(propertyFileName))){
+            bundle = new PropertyResourceBundle(stream);
+        }
     }
 
 
