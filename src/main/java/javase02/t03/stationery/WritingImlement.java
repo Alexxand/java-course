@@ -3,9 +3,7 @@ package javase02.t03.stationery;
 import javase02.t03.utils.Color;
 import static javase02.t03.utils.Color.*;
 
-/**
- * Created by alexmich on 09.10.16.
- */
+
 public class WritingImlement extends Stationery{
     private short length = 10;
     private Color color = GRAY;

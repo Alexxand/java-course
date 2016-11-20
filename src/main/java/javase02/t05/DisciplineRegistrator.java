@@ -7,9 +7,7 @@ import java.util.List;
 
 import javase02.t05.Group.Discipline;
 
-/**
- * Created by alexmich on 14.10.16.
- */
+
 public class DisciplineRegistrator {
 
 private List<Group> listOfGroups = new ArrayList<>();

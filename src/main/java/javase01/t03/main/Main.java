@@ -3,10 +3,6 @@ package javase01.t03.main;
 import javase01.t03.utils.Function;
 
 
-
-/**
- * Created by alexmich on 06.10.16.
- */
 public class Main {
     public static void main(String[] args)
     {

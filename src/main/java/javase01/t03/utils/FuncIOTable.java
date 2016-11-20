@@ -5,9 +5,7 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by alexmich on 07.10.16.
- */
+
 public class FuncIOTable<E>{
 
     private List<Pair<E,E>> table = new ArrayList<>();

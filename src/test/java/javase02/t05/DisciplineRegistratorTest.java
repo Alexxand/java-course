@@ -17,9 +17,7 @@ import static javase02.t05.Student.Sex.MALE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by alexmich on 17.10.16.
- */
+
 public class DisciplineRegistratorTest {
     private final Student typicalStudent1 = new Student("Ivan","Ivanych",20, MALE);
     private final Student typicalStudent2 = new Student("Victor","Vitaminych",45,MALE);

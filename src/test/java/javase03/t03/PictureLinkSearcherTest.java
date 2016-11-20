@@ -12,9 +12,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utils.Utils.getAbsoluteResourcePath;
 
-/**
- * Created by alexmich on 26.10.16.
- */
+
 public class PictureLinkSearcherTest {
 
     @Test

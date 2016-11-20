@@ -11,9 +11,7 @@ import static javase02.t05.Student.Sex.MALE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by alexmich on 17.10.16.
- */
+
 public class GroupTest {
     private final Student typicalStudent = new Student("Ivan","Ivanych",20, MALE);
 

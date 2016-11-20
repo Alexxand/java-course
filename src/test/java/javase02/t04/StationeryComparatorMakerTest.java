@@ -9,9 +9,7 @@ import java.util.List;
 
 import static javase02.t04.StationeryComparatorMaker.Order.*;
 
-/**
- * Created by alexmich on 11.10.16.
- */
+
 public class StationeryComparatorMakerTest {
 
     private void print(List<? extends Stationery> set){

@@ -1,8 +1,9 @@
-package javase05.t02;
+package javase06.t02;
 
-import java.io.FileNotFoundException;
+import javase06.t02.BundleHandler;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.MissingResourceException;
 

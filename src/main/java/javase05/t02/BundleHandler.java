@@ -9,9 +9,6 @@ import java.util.*;
 import static utils.Utils.getAbsoluteResourcePath;
 
 
-/**
- * Created by alexmich on 20.11.16.
- */
 public class BundleHandler {
 
     private PropertyResourceBundle bundle = null;

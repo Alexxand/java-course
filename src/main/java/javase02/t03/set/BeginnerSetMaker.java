@@ -8,9 +8,6 @@ import java.util.List;
 import static javase02.t03.utils.Color.*;
 import static javase02.t03.utils.MeasurementUnit.*;
 
-/**
- * Created by alexmich on 09.10.16.
- */
 public class BeginnerSetMaker {
     public List<Stationery> make(){
         List<Stationery> set = new ArrayList<>(7);

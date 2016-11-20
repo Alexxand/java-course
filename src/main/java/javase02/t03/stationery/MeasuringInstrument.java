@@ -6,9 +6,7 @@ import javase02.t03.utils.MeasurementUnit;
 import static javase02.t03.utils.Color.*;
 import static javase02.t03.utils.MeasurementUnit.*;
 
-/**
- * Created by alexmich on 09.10.16.
- */
+
 public class MeasuringInstrument extends Stationery {
     private Color color = TRANSPARENT;
     private MeasurementUnit unit = CENTIMETER;

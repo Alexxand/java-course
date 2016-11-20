@@ -4,9 +4,7 @@ import java.util.List;
 
 import static javase02.t05.Group.Discipline.*;
 
-/**
- * Created by alexmich on 14.10.16.
- */
+
 public class Group {
 
     private final List<Student> listOfStudents;

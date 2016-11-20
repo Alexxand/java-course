@@ -1,6 +1,5 @@
 package javase02.t01;
 
-//import static Pen.Color.*;
 
 public class Pen {
 

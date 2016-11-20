@@ -8,9 +8,7 @@ import java.util.regex.Pattern;
 
 import static utils.Utils.getAbsoluteResourcePath;
 
-/**
- * Created by alexmich on 29.10.16.
- */
+
 public class KeyWordSearcher {
     private static final List<String> keyWords;
 

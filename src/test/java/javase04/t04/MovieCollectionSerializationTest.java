@@ -10,9 +10,7 @@ import static javase04.t04.Person.Sex.*;
 import static org.junit.Assert.assertTrue;
 import static utils.Utils.getAbsoluteResourcePath;
 
-/**
- * Created by alexmich on 09.11.16.
- */
+
 public class MovieCollectionSerializationTest {
     static MovieCollection collection = new MovieCollection();
 

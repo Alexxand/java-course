@@ -6,9 +6,6 @@ import java.util.List;
 import static java.lang.Math.floor;
 import static java.lang.Math.tan;
 
-/**
- * Created by alexmich on 07.10.16.
- */
 public class Function {
     public static double func(final double x) {
         return tan(2 * x) - 3;

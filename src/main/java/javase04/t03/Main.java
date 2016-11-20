@@ -5,9 +5,7 @@ import java.util.Arrays;
 
 import static utils.Utils.getAbsoluteResourcePath;
 
-/**
- * Created by alexmich on 09.11.16.
- */
+
 public class Main {
     private static final int BUFFER_SIZE = 100;
     public static void main(String[] args){

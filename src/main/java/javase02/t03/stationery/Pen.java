@@ -4,9 +4,7 @@ import javase02.t03.utils.Color;
 
 import static javase02.t03.utils.Color.*;
 
-/**
- * Created by alexmich on 09.10.16.
- */
+
 public class Pen extends WritingImlement {
     Color color = TRANSPARENT;
     Color inkColor = BLUE;

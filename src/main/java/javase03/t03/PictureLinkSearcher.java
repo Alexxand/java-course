@@ -7,9 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-/**
- * Created by alexmich on 25.10.16.
- */
+
 public class PictureLinkSearcher {
 
     private static final String PICTURE_LINK_PATTERN ="([Рр]ис. |[Нн]а рисунке )(\\d+)";
