@@ -3,10 +3,7 @@ package javase06.t02;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.MissingResourceException;
-import java.util.PropertyResourceBundle;
+import java.util.*;
 
 import static utils.Utils.getAbsoluteResourcePath;
 
@@ -14,7 +11,6 @@ import static utils.Utils.getAbsoluteResourcePath;
 public class BundleHandler {
 
     private HashMap<String,String> bundleMap = new HashMap<>();
-
 
     public BundleHandler(String propertyFileName) throws IOException, FileNotFoundException {
         PropertyResourceBundle bundle = new PropertyResourceBundle(new FileInputStream(getAbsoluteResourcePath(propertyFileName)));
