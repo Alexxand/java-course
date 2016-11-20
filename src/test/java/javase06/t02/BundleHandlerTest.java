@@ -3,9 +3,15 @@ package javase06.t02;
 import javase06.t02.BundleHandler;
 import org.junit.Test;
 
+import javax.management.AttributeList;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.MissingResourceException;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.assertEquals;
 
