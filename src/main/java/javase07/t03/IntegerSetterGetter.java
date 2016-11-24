@@ -72,17 +72,17 @@ class IntegerSetterGetter extends Thread {
 
             while (number == null) {
 
-                System.out.println( " Поток " +getName() + " ждет пока очередь заполнится");
+                System.out.println( " Поток " + getName() + " ждет пока очередь заполнится");
 
                 resource.wait();
 
-                System.out.println( " Поток " +getName() + " возобновил работу. ");
+                System.out.println( " Поток " + getName() + " возобновил работу. ");
 
                 number = resource.getELement();
 
             }
 
-            System.out.println( " Поток " +getName() + " извлек число " + number);
+            System.out.println( " Поток " + getName() + " извлек число " + number);
 
         }
 
