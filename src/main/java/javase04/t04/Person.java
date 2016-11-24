@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Person implements Serializable{
     @NonNull private String name;
     @NonNull private String surName;
-    @NonNull private int age;
+    private int age;
     @NonNull private Sex sex;
     public enum Sex{
         MALE,
