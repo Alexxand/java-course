@@ -9,7 +9,6 @@ public class PostgresStatementTest extends AbstractStatementsTest {
     private static DataSource ds;
 
 
-    //todo поместить параметры соединения в ResourceBundle
     @BeforeClass
     public static void startup(){
         final PGSimpleDataSource ds = new PGSimpleDataSource();

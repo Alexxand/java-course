@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.alexmich.com/javase09/t01/library"
+        xmlns:lib="http://www.alexmich.com/javase09/t01/library"
+        elementFormDefault="qualified">
+    <element name="library">
+        <complexType>
+            <sequence>
+                <element name="author" minOccurs="1" maxOccurs="unbounded">
+                    <complexType>
+                        <sequence>
+                            <element name="name" type="lib:authorName" />
+                            <element name="surname" type="lib:authorName" />
+                        </sequence>
+                        <attribute name="id" type="ID" use="required"/>
+                    </complexType>
+                </element>
+                <element name="book" type="lib:book" minOccurs="1" maxOccurs="unbounded" />
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="book">
+        <sequence>
+            <element name="name" type="lib:bookName" />
+            <element name="authors" type="lib:authors" />
+        </sequence>
+    </complexType>
+    <simpleType name="bookName">
+        <restriction base="string">
+            <pattern value="[0-9A-Za-z, .]*" />
+            <maxLength value="50" />
+        </restriction>
+    </simpleType>
+    <complexType name="authors">
+        <sequence>
+            <element name="author" minOccurs="1" maxOccurs="unbounded">
+                <complexType>
+                    <attribute name="id" type="IDREF" use="required"/>
+                </complexType>
+            </element>
+        </sequence>
+    </complexType>
+    <simpleType name="authorName">
+        <restriction base="string">
+            <pattern value="[A-Z][a-z]*" />
+            <maxLength value="30" />
+        </restriction>
+    </simpleType>
+</schema>

@@ -14,12 +14,10 @@ public abstract class AbstractStatementsTest {
     abstract DataSource getDataSource();
     private final Flyway flyway;
 
-
-    //todo убрать информацию flyway в логи
     public AbstractStatementsTest() {
         this.flyway = new Flyway();
         this.flyway.setDataSource(getDataSource());
-        this.flyway.setLocations("db");
+        this.flyway.setLocations("db_javase08_t01");
     }
 
     @Before
@@ -42,10 +40,11 @@ public abstract class AbstractStatementsTest {
         try(Connection connection = getDataSource().getConnection()){
             PreparedStatement select = connection.prepareStatement("select password from data where login = ?;", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             select.setString(1,"Esenin");
-            final ResultSet resultSet = select.executeQuery();
-            resultSet.next();
-            String password = resultSet.getString("password");
-            assertEquals("Ujhbpdtplfvjzytgflfq",password);
+            try (final ResultSet resultSet = select.executeQuery()) {
+                resultSet.next();
+                String password = resultSet.getString("password");
+                assertEquals("Ujhbpdtplfvjzytgflfq", password);
+            }
         }
     }
 
@@ -55,10 +54,11 @@ public abstract class AbstractStatementsTest {
             Statement statement = connection.createStatement();
             int updatedRows = statement.executeUpdate("update data set password='haha'");
             assertEquals(3,updatedRows);
-            ResultSet passwords = statement.executeQuery("select password from data");
-            while(passwords.next()){
-                String curPwd = passwords.getString("password");
-                assertEquals("haha",curPwd);
+            try (ResultSet passwords = statement.executeQuery("select password from data")) {
+                while (passwords.next()) {
+                    String curPwd = passwords.getString("password");
+                    assertEquals("haha", curPwd);
+                }
             }
         }
 
@@ -69,12 +69,13 @@ public abstract class AbstractStatementsTest {
     public void selectAll() throws SQLException{
         try(Connection connection = getDataSource().getConnection()) {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select login, password from data where login = 'Hajam'");
-            resultSet.next();
-            String curLogin = resultSet.getString("login");
-            String curPwd = resultSet.getString("password");
-            assertEquals("Yjexbnnjq",curPwd);
-            assertEquals("Hajam",curLogin);
+            try(ResultSet resultSet = statement.executeQuery("select login, password from data where login = 'Hajam'")) {
+                resultSet.next();
+                String curLogin = resultSet.getString("login");
+                String curPwd = resultSet.getString("password");
+                assertEquals("Yjexbnnjq", curPwd);
+                assertEquals("Hajam", curLogin);
+            }
         }
     }
 
@@ -84,11 +85,12 @@ public abstract class AbstractStatementsTest {
             Statement statement = connection.createStatement();
             int affectedRows = statement.executeUpdate("insert into data values('alexmich','pfxtvyfvhs,fhfptcnmbrhf')");
             assertEquals(1,affectedRows);
-            ResultSet lastRecord = statement.executeQuery("select password from data where login='alexmich'");
-            assertEquals(true,lastRecord.next());
-            String insertedPwd = lastRecord.getString("password");
-            assertEquals("pfxtvyfvhs,fhfptcnmbrhf",insertedPwd);
-            assertEquals(false,lastRecord.next());
+            try (ResultSet lastRecord = statement.executeQuery("select password from data where login='alexmich'")) {
+                assertEquals(true, lastRecord.next());
+                String insertedPwd = lastRecord.getString("password");
+                assertEquals("pfxtvyfvhs,fhfptcnmbrhf", insertedPwd);
+                assertEquals(false, lastRecord.next());
+            }
         }
     }
 

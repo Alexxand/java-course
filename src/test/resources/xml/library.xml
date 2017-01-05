@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<library xmlns="http://www.alexmich.com/javase09/t01/library">
+    <author id="author-1">
+        <name>Boris</name>
+        <surname>Strugatsky</surname>
+    </author>
+    <author id="author-2">
+        <name>Arkadiy</name>
+        <surname>Strugatsky</surname>
+    </author>
+    <book>
+        <name>Tale of the Troika</name>
+        <authors>
+            <author id="author-1" />
+            <author id="author-2" />
+        </authors>
+    </book>
+    <book>
+        <name>Monday begins on Saturday</name>
+        <authors>
+            <author id="author-1" />
+            <author id="author-2" />
+        </authors>
+    </book>
+</library>
