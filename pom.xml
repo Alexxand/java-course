@@ -58,7 +58,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.flywaydb</groupId>>
+            <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>3.1</version>
         </dependency>
