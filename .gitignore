@@ -2,6 +2,6 @@ target
 bin
 out
 doc
-.*
+.idea
 *.iml
 log.txt
